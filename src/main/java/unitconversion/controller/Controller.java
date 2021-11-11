@@ -24,13 +24,21 @@ public record Controller(View view, ValueToConvert valueToConvert) {
 
     public void updateFeetText() {
         String value = view.getFeetTextArea().getText();
-        valueToConvert.setMeasurement(value, TextAreaView.ViewType.FEET);
+        try {
+            valueToConvert.setMeasurement(value, TextAreaView.ViewType.FEET);
+        } catch (NumberFormatException e) {
+            view.showErrorMessage("Error", "Please enter valid number");
+        }
         valueToConvert.notifySubscribers(valueToConvert());
     }
 
     public void updateMeterText() {
         String value = view.getMeterTextArea().getText();
-        valueToConvert.setMeasurement(value, TextAreaView.ViewType.METER);
+        try {
+            valueToConvert.setMeasurement(value, TextAreaView.ViewType.METER);
+        } catch (NumberFormatException e) {
+            view.showErrorMessage("Error", "Please enter valid number");
+        }
         valueToConvert.notifySubscribers(valueToConvert());
     }
 }

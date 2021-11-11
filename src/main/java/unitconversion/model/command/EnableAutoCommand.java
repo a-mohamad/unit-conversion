@@ -32,9 +32,9 @@ public class EnableAutoCommand implements Command {
             });
         } else {
             for (CaretListener listener : caretListenersC)
-                controller.view().getMeterTextArea().removeCaretListener(listener);
+                controller.view().getCentimeterTextArea().removeCaretListener(listener);
             for (CaretListener listener : caretListenersF)
-                controller.view().getMeterTextArea().removeCaretListener(listener);
+                controller.view().getFeetTextArea().removeCaretListener(listener);
             for (CaretListener listener : caretListenersM)
                 controller.view().getMeterTextArea().removeCaretListener(listener);
         }
