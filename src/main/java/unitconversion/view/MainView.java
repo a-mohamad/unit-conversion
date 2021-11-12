@@ -13,24 +13,60 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+/**
+ * The type Main view.
+ */
 public class MainView {
+    /**
+     * The constant WIDTH.
+     */
     /* frame properties */
     static final int WIDTH = 750;
+    /**
+     * The Height.
+     */
     static final int HEIGHT = 650;
 
+    /**
+     * The Frame.
+     */
     final JFrame frame;
+    /**
+     * The Controller.
+     */
     final Controller controller;
+    /**
+     * The Value to convert.
+     */
     final ValueToConvert valueToConvert;
 
+    /**
+     * The Commands.
+     */
     /* menu commands */
     final HashMap<String, Command> commands = new HashMap<>();
 
+    /**
+     * The Menu bar.
+     */
     /* accessible components */
     final JMenuBar menuBar;
+    /**
+     * The Centimeter text area.
+     */
     AbstractJTextArea centimeterTextArea;
+    /**
+     * The Feet text area.
+     */
     AbstractJTextArea feetTextArea;
+    /**
+     * The Meter text area.
+     */
     AbstractJTextArea meterTextArea;
 
+    /**
+     * Instantiates a new Main view.
+     */
     public MainView() {
         enableLookAndFeel();
         this.frame = new JFrame();
@@ -85,6 +121,9 @@ public class MainView {
         return menuItem;
     }
 
+    /**
+     * Enable look and feel.
+     */
     public void enableLookAndFeel() {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
@@ -94,22 +133,48 @@ public class MainView {
         }
     }
 
+    /**
+     * Show error message.
+     *
+     * @param title   the title
+     * @param message the message
+     */
     public void showErrorMessage(String title, String message) {
         JOptionPane.showMessageDialog(this.frame, message, title, JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Gets centimeter text area.
+     *
+     * @return the centimeter text area
+     */
     public AbstractJTextArea getCentimeterTextArea() {
         return centimeterTextArea;
     }
 
+    /**
+     * Gets feet text area.
+     *
+     * @return the feet text area
+     */
     public AbstractJTextArea getFeetTextArea() {
         return feetTextArea;
     }
 
+    /**
+     * Gets meter text area.
+     *
+     * @return the meter text area
+     */
     public AbstractJTextArea getMeterTextArea() {
         return meterTextArea;
     }
 
+    /**
+     * Gets menu bar.
+     *
+     * @return the menu bar
+     */
     public JMenuBar getMenuBar() {
         return menuBar;
     }

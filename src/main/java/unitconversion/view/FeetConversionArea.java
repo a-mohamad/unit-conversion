@@ -5,10 +5,16 @@ import unitconversion.model.ValueToConvert;
 
 import java.awt.*;
 
+/**
+ * The type Feet conversion area.
+ */
 public class FeetConversionArea extends AbstractJTextArea {
 
     private final MeasurementType type = MeasurementType.FEET;
 
+    /**
+     * Instantiates a new Feet conversion area.
+     */
     public FeetConversionArea() {
         setBackground(Color.GREEN);
     }

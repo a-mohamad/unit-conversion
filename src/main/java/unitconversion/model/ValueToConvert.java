@@ -3,11 +3,21 @@ package unitconversion.model;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The type Value to convert.
+ */
 public class ValueToConvert implements Subject {
     private final List<Observer> observers = new LinkedList<>();
     private MeasurementType type;
     private double value;
 
+    /**
+     * Sets measurement.
+     *
+     * @param value the value
+     * @param type  the type
+     * @throws NumberFormatException the number format exception
+     */
     public void setMeasurement(String value, MeasurementType type) throws NumberFormatException {
         double val;
         if (value.isEmpty() || value.isBlank())
@@ -19,10 +29,20 @@ public class ValueToConvert implements Subject {
         this.type = type;
     }
 
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
     public MeasurementType getType() {
         return type;
     }
 
+    /**
+     * Gets value.
+     *
+     * @return the value
+     */
     public double getValue() {
         return value;
     }

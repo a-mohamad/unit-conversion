@@ -5,10 +5,16 @@ import unitconversion.model.ValueToConvert;
 
 import java.awt.*;
 
+/**
+ * The type Meter conversion area.
+ */
 public class MeterConversionArea extends AbstractJTextArea {
 
     private final MeasurementType type = MeasurementType.METER;
 
+    /**
+     * Instantiates a new Meter conversion area.
+     */
     public MeterConversionArea() {
         setBackground(Color.ORANGE);
     }

@@ -5,10 +5,16 @@ import unitconversion.model.ValueToConvert;
 
 import java.awt.*;
 
+/**
+ * The type Centimeters conversion area.
+ */
 public class CentimetersConversionArea extends AbstractJTextArea {
 
     private final MeasurementType type = MeasurementType.CENTIMETER;
 
+    /**
+     * Instantiates a new Centimeters conversion area.
+     */
     public CentimetersConversionArea() {
         setBackground(Color.YELLOW);
     }
