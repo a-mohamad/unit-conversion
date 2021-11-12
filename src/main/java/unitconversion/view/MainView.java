@@ -14,58 +14,67 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 /**
- * The type Main view.
+ * The type Main view initializes the frame that is used to update the window. It can be thought of as the main access
+ * point to the front end. The precondition for this class is that it holds instances of JFrame, Controller,
+ * ValueToConvert, JMenuBar and the type text areas. This is so it can use those instances and update the view
+ * correspondingly. The post condition is that given an update, the MainView polls the most recent information
+ * from each of those instances to create a live updated view for each frame.
  */
 public class MainView {
     /**
-     * The constant WIDTH.
+     * The width used to set the initial GUI size.
      */
-    /* frame properties */
     static final int WIDTH = 750;
+
     /**
-     * The Height.
+     * The height used to set the initial GUI size.
      */
     static final int HEIGHT = 650;
 
     /**
-     * The Frame.
+     * The Frame that is being painted.
      */
     final JFrame frame;
+
     /**
-     * The Controller.
+     * The Controller that connects the view to the logic of the model.
      */
     final Controller controller;
+
     /**
-     * The Value to convert.
+     * The Value to convert is the converted instance used to make conversions between types.
      */
     final ValueToConvert valueToConvert;
 
     /**
-     * The Commands.
+     * The Commands that are currently available to be fired in the view.
      */
-    /* menu commands */
     final HashMap<String, Command> commands = new HashMap<>();
 
     /**
-     * The Menu bar.
+     * The Menu bar that is rendered.
      */
-    /* accessible components */
     final JMenuBar menuBar;
+
     /**
-     * The Centimeter text area.
+     * The Centimeter text area where the numeric value of centimeters is displayed.
      */
     AbstractJTextArea centimeterTextArea;
+
     /**
-     * The Feet text area.
+     * The Feet text area where the numeric value of feet is displayed.
      */
     AbstractJTextArea feetTextArea;
+
     /**
-     * The Meter text area.
+     * The Meter text area where the numeric value of meters is displayed.
      */
     AbstractJTextArea meterTextArea;
 
     /**
-     * Instantiates a new Main view.
+     * Instantiates a new Main view with the corresponding new instances of JFrame, ValueToConvert etc. needed as
+     * a precondition for our view to function as required. Renders the initial frame as well as the corresponding
+     * centimeters, feet, and meters panel along with the preset defaults.
      */
     public MainView() {
         enableLookAndFeel();
@@ -83,8 +92,14 @@ public class MainView {
         commands.put("ENABLE", new EnableAutoCommand(this.controller));
 
         final MenubarListener menubarListener = new MenubarListener(commands);
-        final JMenuItem save = createMenuItem("Save input centimeters", "SAVE", KeyStroke.getKeyStroke("alt F"), menubarListener);
-        final JMenuItem enable = createMenuItem("Enable auto conversion", "ENABLE", KeyStroke.getKeyStroke("alt A"), menubarListener);
+        final JMenuItem save = createMenuItem(
+                "Save input centimeters", "SAVE", KeyStroke.getKeyStroke("alt F"),
+                menubarListener
+        );
+        final JMenuItem enable = createMenuItem(
+                "Enable auto conversion", "ENABLE", KeyStroke.getKeyStroke("alt A"),
+                menubarListener
+        );
         updateModel.add(save);
         updateModel.add(enable);
         menuBar.add(updateModel);
@@ -113,6 +128,15 @@ public class MainView {
         this.frame.setVisible(true);
     }
 
+    /**
+     * With the provided parameters creates a JMenuItem used as a menu item during render.
+     *
+     * @param text is the text to be added to the menu item.
+     * @param actionCommand is the command that is performed when this item is triggered.
+     * @param accelerator is the key actions that are pressed.
+     * @param listener the event listern that is active to capture inputs.
+     * @return menuItem which is the corresponding JMenuItem with the parameters.
+     */
     private JMenuItem createMenuItem(String text, String actionCommand, KeyStroke accelerator, ActionListener listener) {
         JMenuItem menuItem = new JMenuItem(text);
         menuItem.setActionCommand(actionCommand);
@@ -122,7 +146,7 @@ public class MainView {
     }
 
     /**
-     * Enable look and feel.
+     * Sets the style of instantiated JFrame with customized dark theme.
      */
     public void enableLookAndFeel() {
         try {
@@ -134,48 +158,39 @@ public class MainView {
     }
 
     /**
-     * Show error message.
+     * Shows error message provided an error occurs such as not a number error.
      *
-     * @param title   the title
-     * @param message the message
+     * @param title   the title of the error message be captured.
+     * @param message the message that is to be displayed to the user.
      */
     public void showErrorMessage(String title, String message) {
         JOptionPane.showMessageDialog(this.frame, message, title, JOptionPane.ERROR_MESSAGE);
     }
 
     /**
-     * Gets centimeter text area.
+     * Gets the text frame for centimeters so that the instance can be read or updated.
      *
-     * @return the centimeter text area
+     * @return the text frame instance for centimeters.
      */
     public AbstractJTextArea getCentimeterTextArea() {
         return centimeterTextArea;
     }
 
     /**
-     * Gets feet text area.
+     * Gets the text frame for feet so that the instance can be read or updated.
      *
-     * @return the feet text area
+     * @return the text frame instance for feet.
      */
     public AbstractJTextArea getFeetTextArea() {
         return feetTextArea;
     }
 
     /**
-     * Gets meter text area.
+     * Gets the text frame for meters so that the instance can be read or updated.
      *
-     * @return the meter text area
+     * @return the text frame instance for meters.
      */
     public AbstractJTextArea getMeterTextArea() {
         return meterTextArea;
-    }
-
-    /**
-     * Gets menu bar.
-     *
-     * @return the menu bar
-     */
-    public JMenuBar getMenuBar() {
-        return menuBar;
     }
 }
