@@ -19,6 +19,5 @@ public abstract class AbstractJTextArea extends JTextArea implements Observer {
     public AbstractJTextArea() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setForeground(Color.BLACK);
-        insert("0", 0);
     }
 }

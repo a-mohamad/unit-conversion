@@ -21,6 +21,7 @@ public class FeetConversionArea extends AbstractJTextArea {
      */
     public FeetConversionArea() {
         setBackground(Color.GREEN);
+        insert("0 ft", 0);
     }
 
     /**

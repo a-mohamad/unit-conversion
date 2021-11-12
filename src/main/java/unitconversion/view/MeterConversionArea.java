@@ -21,6 +21,7 @@ public class MeterConversionArea extends AbstractJTextArea {
      */
     public MeterConversionArea() {
         setBackground(Color.ORANGE);
+        insert("0 m", 0);
     }
 
     /**

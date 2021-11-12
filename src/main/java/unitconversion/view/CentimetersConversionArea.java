@@ -21,6 +21,7 @@ public class CentimetersConversionArea extends AbstractJTextArea {
      */
     public CentimetersConversionArea() {
         setBackground(Color.YELLOW);
+        insert("0 cm", 0);
     }
 
     /**
