@@ -1,23 +1,20 @@
 package unitconversion.view;
 
 import unitconversion.model.Observer;
-import unitconversion.model.Subject;
-import unitconversion.model.ValueToConvert;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
- * The type Abstract j text area.
+ * The type Abstract JTextArea provides a generic template for the size of each panel as well colour
+ * and starting numeric.
  */
 public abstract class AbstractJTextArea extends JTextArea implements Observer {
     private static final int WIDTH = 250;
     private static final int HEIGHT = 250;
-    
+
     /**
-     * Instantiates a new Abstract j text area.
+     * Instantiates a new AbstractJTextArea with the default dimensions, colour and starting position.
      */
     public AbstractJTextArea() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
