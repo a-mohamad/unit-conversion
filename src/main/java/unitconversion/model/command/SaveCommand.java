@@ -2,20 +2,15 @@ package unitconversion.model.command;
 
 import unitconversion.controller.Controller;
 
-public class SaveCommand implements Command {
-    private final Controller controller;
-
-    public SaveCommand(Controller controller) {
-        this.controller = controller;
-    }
+public record SaveCommand(Controller controller) implements Command {
 
     @Override
     public void execute() {
-        if (controller.view().getCentimeterTextArea().isFocusOwner())
-            this.controller.updateCentimeterText();
         if (controller.view().getFeetTextArea().isFocusOwner())
-            this.controller.updateFeetText();
-        if (controller.view().getMeterTextArea().isFocusOwner())
-            this.controller.updateMeterText();
+            controller.updateFeetText();
+        else if (controller.view().getMeterTextArea().isFocusOwner())
+            controller.updateMeterText();
+        else
+            controller.updateCentimeterText();
     }
 }

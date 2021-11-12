@@ -1,6 +1,9 @@
 package unitconversion.view;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import unitconversion.controller.Controller;
 import unitconversion.controller.MenubarListener;
+import unitconversion.model.ValueToConvert;
 import unitconversion.model.command.Command;
 import unitconversion.model.command.EnableAutoCommand;
 import unitconversion.model.command.SaveCommand;
@@ -10,22 +13,35 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
-public class MainView extends AbstractView {
+public class MainView {
     /* frame properties */
-    private static final int WIDTH = 750;
-    private static final int HEIGHT = 650;
+    static final int WIDTH = 750;
+    static final int HEIGHT = 650;
+
+    final JFrame frame;
+    final Controller controller;
+    final ValueToConvert valueToConvert;
+
     /* menu commands */
     final HashMap<String, Command> commands = new HashMap<>();
+
     /* accessible components */
+    final JMenuBar menuBar;
     AbstractJTextArea centimeterTextArea;
     AbstractJTextArea feetTextArea;
     AbstractJTextArea meterTextArea;
 
     public MainView() {
+        enableLookAndFeel();
+        this.frame = new JFrame();
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.valueToConvert = new ValueToConvert();
+        this.controller = new Controller(this, valueToConvert);
+
         final JPanel root = new JPanel(new FlowLayout());
         root.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
-        final JMenuBar menuBar = new JMenuBar();
+        menuBar = new JMenuBar();
         final JMenu updateModel = new JMenu("Update model");
         commands.put("SAVE", new SaveCommand(this.controller));
         commands.put("ENABLE", new EnableAutoCommand(this.controller));
@@ -37,9 +53,9 @@ public class MainView extends AbstractView {
         updateModel.add(enable);
         menuBar.add(updateModel);
 
-        centimeterTextArea = (AbstractJTextArea) TextAreaView.createView(TextAreaView.ViewType.CENTIMETERS);
-        feetTextArea = (AbstractJTextArea) TextAreaView.createView(TextAreaView.ViewType.FEET);
-        meterTextArea = (AbstractJTextArea) TextAreaView.createView(TextAreaView.ViewType.METER);
+        centimeterTextArea = new CentimetersConversionArea();
+        feetTextArea = new FeetConversionArea();
+        meterTextArea = new MeterConversionArea();
 
         this.valueToConvert.addSubscriber(centimeterTextArea);
         this.valueToConvert.addSubscriber(feetTextArea);
@@ -69,18 +85,32 @@ public class MainView extends AbstractView {
         return menuItem;
     }
 
-    @Override
+    public void enableLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (final Exception ex) {
+            System.err.println("Failed to initialize LaF");
+            ex.printStackTrace();
+        }
+    }
+
+    public void showErrorMessage(String title, String message) {
+        JOptionPane.showMessageDialog(this.frame, message, title, JOptionPane.ERROR_MESSAGE);
+    }
+
     public AbstractJTextArea getCentimeterTextArea() {
         return centimeterTextArea;
     }
 
-    @Override
     public AbstractJTextArea getFeetTextArea() {
         return feetTextArea;
     }
 
-    @Override
     public AbstractJTextArea getMeterTextArea() {
         return meterTextArea;
+    }
+
+    public JMenuBar getMenuBar() {
+        return menuBar;
     }
 }

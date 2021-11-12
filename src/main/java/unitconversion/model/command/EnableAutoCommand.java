@@ -4,12 +4,7 @@ import unitconversion.controller.Controller;
 
 import javax.swing.event.CaretListener;
 
-public class EnableAutoCommand implements Command {
-    private final Controller controller;
-
-    public EnableAutoCommand(Controller controller) {
-        this.controller = controller;
-    }
+public record EnableAutoCommand(Controller controller) implements Command {
 
     @Override
     public void execute() {

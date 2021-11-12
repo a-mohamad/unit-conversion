@@ -1,4 +1,4 @@
-package unitconversion.model.measurement;
+package unitconversion.model;
 
 public enum MeasurementType {
     CENTIMETER("cm"), FEET("ft"), METER("m");

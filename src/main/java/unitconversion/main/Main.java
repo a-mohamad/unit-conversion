@@ -1,9 +1,9 @@
 package unitconversion.main;
 
-import unitconversion.view.View;
+import unitconversion.view.MainView;
 
 public class Main {
     public static void main(String[] args) {
-        View.createView(View.ViewType.MAIN_VIEW);
+        new MainView();
     }
 }

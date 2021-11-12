@@ -10,8 +10,14 @@ public record MenubarListener(HashMap<String, Command> commands) implements Acti
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "SAVE" -> commands.get("SAVE").execute();
-            case "ENABLE" -> commands.get("ENABLE").execute();
+            case "SAVE" -> {
+                System.err.println("SAVED");
+                commands.get("SAVE").execute();
+            }
+            case "ENABLE" -> {
+                System.err.println("ENABLED");
+                commands.get("ENABLE").execute();
+            }
             default -> throw new RuntimeException("Invalid action command " + e.getActionCommand());
         }
     }
