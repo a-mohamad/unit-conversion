@@ -38,7 +38,7 @@ public class CentimetersConversionArea extends AbstractJTextArea {
         double value = valueToConvert.getValue();
         double result = switch (valueToConvert.getType()) {
             case CENTIMETER -> value;
-            case FEET -> 0.0328084 * value;
+            case FEET -> 30.48 * value;
             case METER -> 100 * value;
         };
 
